@@ -351,7 +351,7 @@ if [ -n "$STRAP_GITHUB_USER" ]; then
         git pull $Q --rebase --autostash
       )
     fi
-    run_dotfile_scripts script/setup script/bootstrap
+    run_dotfile_scripts install script/setup script/bootstrap
     logk
   fi
 fi
