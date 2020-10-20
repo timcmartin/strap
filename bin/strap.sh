@@ -51,7 +51,7 @@ STDIN_FILE_DESCRIPTOR="0"
 # STRAP_GITHUB_TOKEN=
 # CUSTOM_HOMEBREW_TAP=
 # CUSTOM_BREW_COMMAND=
-STRAP_ISSUES_URL='https://github.com/MikeMcQuaid/strap/issues/new'
+STRAP_ISSUES_URL='https://github.com/timcmartin/strap/issues/new'
 
 # We want to always prompt for sudo password at least once rather than doing
 # root stuff unexpectedly.
@@ -344,14 +344,14 @@ if [ -n "$STRAP_GITHUB_USER" ]; then
     log "Fetching $STRAP_GITHUB_USER/dotfiles from GitHub:"
     if [ ! -d "$HOME/.dotfiles" ]; then
       log "Cloning to ~/.dotfiles:"
-      git clone $Q "$DOTFILES_URL" ~/.dotfiles
+      git clone --recursive $Q "$DOTFILES_URL" ~/.dotfiles
     else
       (
         cd ~/.dotfiles
         git pull $Q --rebase --autostash
       )
     fi
-    run_dotfile_scripts script/setup script/bootstrap
+    run_dotfile_scripts install script/setup script/bootstrap
     logk
   fi
 fi
